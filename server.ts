@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import userRouter from './src/routers/user';
+import taskRouter from './src/routers/tasks';
 
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 const app = express();
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', userRouter);
+app.use('/tasks', taskRouter);
 
 
 const server = app.listen(port, () => {

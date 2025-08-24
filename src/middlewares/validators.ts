@@ -5,3 +5,10 @@ export function authInputValidator(body: any, type: string) {
     if (!body.password) errors.push("password is required");
     return errors;
 }
+
+export function taskInputValidator(body: any) {
+    let errors = [];
+    if (!body.title) errors.push("title is required");
+    if (!body.description) errors.push("description is required");
+    return errors;
+}

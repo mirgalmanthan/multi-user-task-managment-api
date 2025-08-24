@@ -14,7 +14,7 @@ interface TaskAttributes {
 
 interface TaskCreationAttributes extends Optional<TaskAttributes, 'id'> {}
 
-class Task extends Model<TaskAttributes, TaskCreationAttributes> implements TaskAttributes {
+export class Task extends Model<TaskAttributes, TaskCreationAttributes> implements TaskAttributes {
     public id!: number;
     public user_id!: number;
     public title!: string;
