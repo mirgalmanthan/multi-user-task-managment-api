@@ -1,9 +1,9 @@
-import { Task } from "../db/queries/tasks";
 import { ApiResponse } from "../structs/io";
 import { Request, Response } from "express";
+import { Task } from "../db/queries/tasks";
 
-export async function getTaskById(req: Request, res: Response) {
-    console.log("getTaskById invoked");
+export async function deleteTask(req: Request, res: Response) {
+    console.log("deleteTask invoked");
     let response = new ApiResponse();
     try {
         let task = await Task.findOne({ where: { id: req.params.id } })
@@ -13,15 +13,10 @@ export async function getTaskById(req: Request, res: Response) {
                 errors: ["Task not found"]
             }
         }
+        await task.destroy();
         response.statusCode = 200;
         response.payload = {
-            task: {
-                id: task.id,
-                user_id: task.user_id,
-                title: task.title,
-                description: task.description,
-                status: task.status
-            }
+            message: "Task deleted successfully"
         }
     } catch (error: any) {
         response.errors = error.errors;
