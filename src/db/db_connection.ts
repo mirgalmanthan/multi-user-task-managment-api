@@ -7,3 +7,5 @@ const sequelize = new Sequelize(process.env.DB_NAME || 'TaskService', process.en
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres'
 });
+
+export default sequelize;

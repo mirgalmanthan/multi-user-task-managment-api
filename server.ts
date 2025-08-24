@@ -1,5 +1,6 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
+import userRouter from './src/routers/user';
 
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 const app = express();
@@ -9,9 +10,11 @@ const port = process.env.PORT;
 
 app.get('/', (req, res) => {
   res.send({
-    message: "Hello Files API",
+    message: "Hello Tasks API",
   });
 });
+
+app.use('/users', userRouter);
 
 
 const server = app.listen(port, () => {

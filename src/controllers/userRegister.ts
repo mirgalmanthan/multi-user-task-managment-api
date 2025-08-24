@@ -1,15 +1,18 @@
 import { Request, Response } from "express";
 import { ApiResponse } from "../structs/io";
-import { createUser, getUser } from "../db/queries/user";
 import { hashPassword } from "../helpers/auth";
-import {v4 as uuidv4} from 'uuid';
 import { authInputValidator } from "../middlewares/validators";
+import { User } from "../db/queries/users";
+import * as dotenv from 'dotenv';
+
+if (process.env.NODE_ENV !== 'production') dotenv.config();
+
 
 export async function registerUser(req: Request, res: Response) {
     console.log("registerUser invoked");
     let body = req.body;
     let response = new ApiResponse();
-    let validationErros = authInputValidator(body)
+    let validationErros = authInputValidator(body, 'REGISTER')
     try {
         if (validationErros.length > 0) {
             throw {
@@ -17,7 +20,8 @@ export async function registerUser(req: Request, res: Response) {
                 errors: validationErros
             }
         } else {
-            let user = await getUser(body.userName)
+            let email = body.email;
+            let user = await User.findOne({where: {email}})
             console.log(user)
             if (user) {
                 throw {
@@ -28,7 +32,16 @@ export async function registerUser(req: Request, res: Response) {
                 let password = await hashPassword(body.password, 12)
                 console.log(password)
                 console.log(typeof(password))
-                await createUser(uuidv4(), body.userName, password);
+                let dateTime = new Date();
+                let result = await User.create({
+                    email: body.email,
+                    name: body.name,
+                    password: password,
+                    created_at: dateTime,
+                    updated_at: dateTime
+                })
+                console.log('create user query result: ')
+                console.log(result)
                 response.statusCode = 200
                 response.payload = {
                     message: 'User registered successfully'
@@ -38,10 +51,6 @@ export async function registerUser(req: Request, res: Response) {
     } catch (error: any) {
         console.log("ERROR: ")
         console.log(error)
-        if (error.code && error.code == 23505) {
-            response.statusCode = 409
-            response.errors = ["User already exists"]
-        }
         response.statusCode = error.statusCode
         response.errors = error.errors 
     } finally {
