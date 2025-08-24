@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "7c44d8fa-81b0-4328-8ea7-5a607a96d5cb",
+		"name": "Multi User Task API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22105150",
+		"_collection_link": "https://voice-games-mobile-api.postman.co/workspace/Manthan's-Workspace~b9e842be-3ff5-475e-86ab-fa52c2b0fb9e/collection/22105150-7c44d8fa-81b0-4328-8ea7-5a607a96d5cb?action=share&source=collection_link&creator=22105150"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Manthan Mirgal\",\n    \"email\": \"mirgalmanthan@gmail.com\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mirgalmanthan@gmail.com\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get access token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoibWlyZ2FsbWFudGhhbkBnbWFpbC5jb20iLCJuYW1lIjoiTWFudGhhbiBNaXJnYWwiLCJwYXNzd29yZCI6IiQyYiQxMiRELmY1cDl1d0ZvMGRoaHJWbHNFMWF1SG8wdEEvSHRWeG56emFGT0pFMkYvWE52WFBCYmpiUyIsImlhdCI6MTc1NjA0NTU2MCwiZXhwIjoxNzU2MDQ5MTYwfQ.zzTTCD0Ffiaj-7LOZDYi4T-oZHEJHh_4HyvihMgyEbo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mirgalmanthan@gmail.com\",\n    \"password\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/refresh-session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"refresh-session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoibWlyZ2FsbWFudGhhbkBnbWFpbC5jb20iLCJuYW1lIjoiTWFudGhhbiBNaXJnYWwiLCJwYXNzd29yZCI6IiQyYiQxMiRELmY1cDl1d0ZvMGRoaHJWbHNFMWF1SG8wdEEvSHRWeG56emFGT0pFMkYvWE52WFBCYmpiUyIsImlhdCI6MTc1NjA0NDc5NiwiZXhwIjoxNzU2MDQ1Mzk2fQ.RoUskqvrVmkr7BNKNgoAXOmZesKuR1xDV-JnBHm5p2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Write code\",\n    \"description\": \"Write and essay based on Gandhiji's efforts\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoibWlyZ2FsbWFudGhhbkBnbWFpbC5jb20iLCJuYW1lIjoiTWFudGhhbiBNaXJnYWwiLCJwYXNzd29yZCI6IiQyYiQxMiRELmY1cDl1d0ZvMGRoaHJWbHNFMWF1SG8wdEEvSHRWeG56emFGT0pFMkYvWE52WFBCYmpiUyIsImlhdCI6MTc1NjA0NDc5NiwiZXhwIjoxNzU2MDQ1Mzk2fQ.RoUskqvrVmkr7BNKNgoAXOmZesKuR1xDV-JnBHm5p2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tasks?offset=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task with ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoibWlyZ2FsbWFudGhhbkBnbWFpbC5jb20iLCJuYW1lIjoiTWFudGhhbiBNaXJnYWwiLCJwYXNzd29yZCI6IiQyYiQxMiRELmY1cDl1d0ZvMGRoaHJWbHNFMWF1SG8wdEEvSHRWeG56emFGT0pFMkYvWE52WFBCYmpiUyIsImlhdCI6MTc1NjA0NTU2MCwiZXhwIjoxNzU2MDQ3MzYwfQ.WP0AVcAO_nItkg8siXaPOdViQt2Od9cRMlpIfyjPPhc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tasks/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoibWlyZ2FsbWFudGhhbkBnbWFpbC5jb20iLCJuYW1lIjoiTWFudGhhbiBNaXJnYWwiLCJwYXNzd29yZCI6IiQyYiQxMiRELmY1cDl1d0ZvMGRoaHJWbHNFMWF1SG8wdEEvSHRWeG56emFGT0pFMkYvWE52WFBCYmpiUyIsImlhdCI6MTc1NjA0NjAwNSwiZXhwIjoxNzU2MDQ3ODA1fQ.YrQXhXnguEcMahF62jWxowAErV9MsIB0NOSyqUFhFz0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"done\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tasks/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoibWlyZ2FsbWFudGhhbkBnbWFpbC5jb20iLCJuYW1lIjoiTWFudGhhbiBNaXJnYWwiLCJwYXNzd29yZCI6IiQyYiQxMiRELmY1cDl1d0ZvMGRoaHJWbHNFMWF1SG8wdEEvSHRWeG56emFGT0pFMkYvWE52WFBCYmpiUyIsImlhdCI6MTc1NjA0Njc3MiwiZXhwIjoxNzU2MDQ4NTcyfQ.v1m_0pzCZF5iqwboyKCoVAfmqDjK0hg7-mGUPXte7b4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tasks/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks",
+						"14"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
